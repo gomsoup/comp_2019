@@ -1,6 +1,9 @@
 Interpreter
 - python 내장 모듈인 turtle의 인터프리터입니다. 
 
+0. 공통 요구사항
+- python 버전 3 이상이 필요합니다.
+
 1. 실행
 	python interpreter.py {input}
  
