@@ -145,7 +145,6 @@ def solver():
 
         c = compiler()
         c.compile(result)
-        print(c.middle)
 
     # read from stdin mode
     else:
@@ -155,8 +154,6 @@ def solver():
             if inp == "exit" :
                 c = compiler()
                 c.compile(result)
-
-                print(c.middle)
                 break
 
             tmp = parser(inp)
