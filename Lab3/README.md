@@ -14,7 +14,7 @@ make
 ## How can i calculate?
 
 ```
-./a
+$ ./a
 1 + 2
 = 3
 10 + 20
