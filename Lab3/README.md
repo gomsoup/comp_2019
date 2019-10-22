@@ -1,6 +1,7 @@
 ## About
 
 Simple calculator supports arithmetic.
+
 Surpports +, -, *, / and brackets
 all arithmetics left associative except brackets.
 
@@ -25,7 +26,7 @@ $ ./a
 
 ## Known bug
 
-Ambiguousity of minus multiplication with brackets
+Ambiguousity of minus unary multiplication with brackets
 
 ```
 -(1 + 2)
