@@ -1,21 +1,18 @@
 ## About
-
+---
 Simple calculator supports arithmetic.
 Surpports +, -, *, / and brackets
 all arithmetics left associative except brackets.
+
+## How to install and Compile ?
 ---
-
-### How to install and Compile ?
-
-Makefile included. you just run make.
+Makefile included. you can make binary just run make.
 ```
 sudo apt install bison flex gcc git -y
 make
 ```
+## How can i calculate?
 ---
-
-#### How can i calculate?
-
 ```
 ./a
 1 + 2
@@ -26,7 +23,8 @@ make
 = 509
 ```
 
-##### Known bug
+## Known bug
+---
 
 Ambiguousity of minus multiplication with brackets
 
