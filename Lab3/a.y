@@ -24,5 +24,5 @@ Fact	: '-' Exp	{ $$ = -$2; }
 	;
 %%
 
-int main() { yyparse(); return 0;}
+int main() { while(1){ yyparse(); } return 0;}
 void yyerror(const char *msg) { fputs(msg, stderr); }
