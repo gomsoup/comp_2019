@@ -15,7 +15,7 @@ make
 ## How can i calculate?
 
 ```
-$ ./a
+$ ./expr
 -123
 = -123
 10 + 20

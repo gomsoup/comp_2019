@@ -25,4 +25,4 @@ Fact	: '(' Exp ')'	{ $$ = $2; }
 %%
 
 int main() { while(1){ yyparse(); } return 0;}
-void yyerror(const char *msg) { fputs(msg, stderr); }
+int yyerror(const char *msg) { fputs(msg, stderr); }
