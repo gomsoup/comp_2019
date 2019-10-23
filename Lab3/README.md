@@ -33,3 +33,10 @@ Ambiguousity of minus unary multiplication with brackets
 = 1
 syntax error
 ```
+
+if you want to unary minus mutiplication with brackets, you should type like this.
+```
+- (1 + 2) // be careful whitespace pos
+= -3
+```
+
