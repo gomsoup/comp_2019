@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <ctype.h>
 
-int LA;
+int LA=-1;
+int num = 0, result = 0;
+
 void error(char *msg) {
 	printf("ERROR: %s\n", msg);
 	exit(1);
@@ -20,62 +23,99 @@ int match(int t) {
 }
 
 bool eof() {
-	return LA == EOF;
+	return LA == '\n';
 }
 
-int E(), T(), F(), Ed(), Td();
 
-int E(){
-	if (eof()){
-		puts("E -> EOF()");
-		exit(0);
+int F(){
+	if(LA == '('){
+		match('('); int d1 = E();  match(')');
+		return d1;
 	}
 	else{
-		puts("E -> T E'");
-		T(); Ed();
+		while(true){
+			if(LA == 32)
+				match(32);
+			else break;
+		}
+		
 
+		int d1;
+		if(LA == '('){
+			match('('); d1 = E(); match(')');
+		}
+		else
+			d1 = LA;
+
+		LA = yylex();
+		
+		while(true){
+			if (LA == 32) 
+				match(32);
+			else break;
+		}
+	
+		if(isdigit(d1)) d1 -= '0';
+		return d1;	
+	}
+}
+
+int Td(){
+	if(LA == 32) 
+		match(32);
+
+	if(LA == '*'){
+		match('*'); 
+		int d1, d2;
+		d1 = F(); 
+		d2 = Td();
+		
+		if(d2 == -1) return d1;
+		else return d1 * d2;
+	}
+	else{
+		return -1;
 	}
 }
 
 int T(){
-	puts("T -> F T'");
-	F(); Td();
+	int d1, d2;
+	d1 = F(); 
+	d2 = Td();
+	if(d2 == -1) return d1;
+	else return d1 * d2;
 }
 
 int Ed(){
-	if(LA == "+"){
-		puts("E' -> + T E'");
-		int d1 = 0, d2 = 0;
-		match('+'); d1 = T(); d2 = Ed();
+	if(LA == 32) 
+		match(32);
+
+	if(LA=='+'){
+		match('+'); 
+		int d1 = T(); 
+		int d2 = Ed();
+	
+		if(d2 == -1) return d1;
 		return d1 + d2;
 	}
-	else
-		return 0;
-}
-
-int Td(){
-	if(LA == '*'){
-		puts("T' -> * F T'");
-		int d1 = 0, d2 = 0;
-		match('*'); d1 = F(); d2 = Td();
-		return d1 * d2;
+	else{
+		return -1;
 	}
-	else
-		return 0;
 }
+		
+int E(){
+	if(LA == '\n' - '0') return 0;
 
-int F(){
-	if(LA == '('){
-		puts("F -> ( E )");
-		int d1 = 0;
-		match('('); E(); match(')');
-	}
-	else
-		return LA;
+	int d1, d2;
+	d1 = T();
+	d2 = Ed();
+
+	if(d2 == -1) return d1;
+	else return d1 + d2;
 }
 
 int main() {
 	LA = yylex();
-	E();
+	printf("%d\n", E());
 	return 0;
 }
