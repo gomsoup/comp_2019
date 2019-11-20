@@ -8,3 +8,4 @@ typedef struct _Node{
 Node *createNode(int type, Node *l, Node *r);
 Node *creteUopNode(int type, Node *n);
 Node *createLeaf(int val);
+void searchNode();
